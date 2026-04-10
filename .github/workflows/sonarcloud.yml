@@ -43,9 +43,9 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-          
+
       - name: Notify Slack on Failure
-        if: fail()
+        if: failure()
         uses: 8398a7/action-slack@v3
         with:
           status: Fail
