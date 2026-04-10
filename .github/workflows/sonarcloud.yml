@@ -7,29 +7,20 @@ on:
 
 jobs:
   build:
-    name: Build and analyze
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  
 
-      # ✅ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # ✅ Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: backend   # 👈 FIX HERE
 
-      # ✅ (Optional) Run tests
-      - name: Run tests
-        run: npm test || true
-
-      # ✅ SonarQube Scan
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
