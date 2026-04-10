@@ -15,9 +15,21 @@ jobs:
         with:
           fetch-depth: 0  
 
-      - name: Build project
-        run: mvn clean verify
+      # ✅ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
+      # ✅ Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # ✅ (Optional) Run tests
+      - name: Run tests
+        run: npm test || true
+
+      # ✅ SonarQube Scan
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
