@@ -29,12 +29,12 @@ jobs:
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-       - name: Notify Slack on Success
+      - name: Notify Slack on Success
         if: success()
         uses: 8398a7/action-slack@v3
         with:
           status: success
-          text: "SonarQube Quality Gate PASSED for ${{ github.repository }}"
+          text: "Snyk Quality Gate PASSED for ${{ github.repository }}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -44,7 +44,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: Fail
-          text: "SonarQube Quality Gate FAILED for ${{ github.repository }}"
+          text: "Snyk Quality Gate FAILED for ${{ github.repository }}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
  
